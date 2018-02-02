@@ -161,6 +161,8 @@ results on the client-side to avoid the possibility of a cross-site scripting
 attack. It's trivial to do so using a JavaScript library like jQuery - simply
 use ``$(el).text(errorText)`` rather than ``.html()``.
 
+* A form prefix can be specified inside a form class, not only when
+  instantiating a form. See :ref:`form-prefix` for details.
 If for some reason you don't want to use client-side escaping, you can also
 set ``escape_html=True`` and error messages will be escaped so you can use them
 directly in HTML.
@@ -1065,3 +1067,12 @@ You can put several Django forms inside one ``<form>`` tag. To give each
     >>> print(father.as_ul())
     <li><label for="id_father-first_name">First name:</label> <input type="text" name="father-first_name" id="id_father-first_name" /></li>
     <li><label for="id_father-last_name">Last name:</label> <input type="text" name="father-last_name" id="id_father-last_name" /></li>
+The prefix can also be specified on the form class::
+
+    >>> class PersonForm(forms.Form):
+    ...     ...
+    ...     prefix = 'person'
+
+.. versionadded:: 1.9
+
+    The ability to specify ``prefix`` on the form class was added.
